@@ -2,10 +2,14 @@ package com.huffman;
 
 import java.util.Objects;
 
-public class Run {
+public class Run implements Comparable<Run> {
   public byte symbol;
   public int runLen;
   public int freq;
+  public Run left;
+  public Run right;
+  public int codeword;
+  public int codewordLen;
 
   public Run() {}
 
@@ -13,6 +17,11 @@ public class Run {
     this.symbol = symbol;
     this.runLen = runLen;
     freq = 1;
+  }
+
+  @Override
+  public int compareTo(Run other) {
+    return freq - other.freq;
   }
 
   @Override
@@ -34,6 +43,6 @@ public class Run {
 
   @Override
   public String toString() {
-    return "\nRun{" + "symbol=" + symbol + ", runLen=" + runLen + ", freq=" + freq + '}';
+    return "[symbol=" + symbol + ", runLen=" + runLen + ", freq=" + freq + "]";
   }
 }
